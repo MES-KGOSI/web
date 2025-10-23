@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CONTACT</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="info-pages">
+
+  <!-- Header / Navigation for Info Pages -->
+  <header class="site-header info-pages-header">
+    <div class="container header-inner">
+      <!-- Logo on the left -->
+      <div class="brand">
+        <a href="../index.html">
+          <img src="../assets/images/logoBlack.png" alt="Logo" class="logo">
+        </a>
+      </div>
+
+      <!-- Centered nav inside pill -->
+      <nav class="site-nav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../pages/sixmonths.html" class="nav-link">6 Months</a>
+        <a href="../pages/sixweeks.html" class="nav-link">6 Weeks</a>
+        <a href="../pages/contact.html" class="nav-link active">Contact</a> <!-- Active -->
+      </nav>
+
+      <!-- Search icon on the right -->
+      <div class="search-icon">
+        <img src="../assets/icons/searchBlack.png" alt="Search" class="icon" id="search-toggle">
+        <div class="search-box" id="search-box">
+          <input type="text" placeholder="search...">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- JS for search dropdown -->
+  <script>
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBox = document.getElementById('search-box');
+
+    searchToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
+      searchBox.querySelector('input').focus();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+        searchBox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
