@@ -1,0 +1,539 @@
+/* General resets */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Header / Nav styling */
+.site-header {
+  position: absolute;
+  top: 20px; /* distance from top */
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Logo */
+.brand .logo {
+  height: 110px;
+  width: auto;
+  margin-left: -50px; /* move logo 20px to the left */
+}
+
+/* Nav pill container */
+.site-nav {
+  display: flex;
+  gap: 60px;                /* space between links */
+  background: #FFFFFF;       /* pure white */
+  border-radius: 50px;
+  padding: 12px 40px;       /* top/bottom and left/right padding */
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;          /* adjust link text size */
+  min-width: 500px;         /* optional: minimum width for the pill */
+  max-width: 100%;           /* scales on larger screens */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* subtle shadow for contrast */
+  transition: all 0.3s;
+}
+
+
+/* Nav links with circles */
+.site-nav .nav-link {
+  position: relative;
+  text-decoration: none;
+  color: #000900;
+  font-weight: bold;
+  padding-left: 25px; /* space for circle */
+  transition: color 0.3s;
+}
+
+.site-nav .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #007AFF; /* blue border */
+  background: transparent;
+}
+
+.site-nav .nav-link.active::before {
+  background: #007AFF;
+}
+
+.site-nav .nav-link:hover {
+  color: #007AFF;
+}
+
+/* Search icon */
+.search-icon .icon {
+  height: 50px;          /* choose desired height */
+  width: auto;           /* keeps aspect ratio */
+  object-fit: contain;   /* ensures it’s not stretched */
+  cursor: pointer;
+}
+
+/* Hero section */
+.hero {
+  background: url('../assets/images/bannerWeb.png') no-repeat center center/cover;
+  height: 100vh; /* full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* push content to right */
+  position: relative;
+  color: #fff;
+  padding: 0 60px; /* space from right edge */
+}
+
+/* Overlay */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* semi-transparent black overlay */
+  z-index: 0; /* behind text */
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1; /* above overlay */
+  max-width: 700px;
+  text-align: left; /* left-align heading, paragraph, button */
+}
+
+/* Heading */
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  margin-top: 150px;
+}
+
+/* Divider line */
+.hero h2 + .divider {
+  width: 300px;
+  height: 3px;
+  background: #FFFFFF;
+  margin: 20px 0; /* spacing above and below */
+  border-radius: 2px;
+}
+
+/* Paragraph */
+.hero .lead {
+  font-size: 1.25rem;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* Button */
+.hero .btn {
+  display: inline-block;
+  background: #FFFFFF;
+  color: #000900;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.hero .btn:hover {
+  background: #007AFF;
+}
+
+.site-nav .nav-link.active::before {
+  background: #007AFF;          /* filled blue circle */
+}
+
+/* Active link text turns blue */
+.site-nav .nav-link.active {
+  color: #007AFF; /* text is blue */
+}
+
+/* Circle for active link (optional, keep blue fill) */
+.site-nav .nav-link.active::before {
+  background: #007AFF; 
+  border-color: #007AFF;
+}
+
+
+/* Logo clickable (already wrapped in <a> in HTML) */
+.brand a {
+  display: inline-block;
+}
+
+/* Search dropdown container */
+.search-box {
+  display: none; /* hidden by default */
+  position: absolute;
+  top: 100px; /* below nav */
+  left: 50%;    /* center horizontally */
+  transform: translateX(-50%);
+  width: 80%;   /* fills most of page width */
+  max-width: 900px;
+  z-index: 20;
+  border-radius: 12px;   /* rounded corners */
+  padding: 10px 20px;
+}
+
+/* Search input */
+.search-box input {
+  width: 100%;              /* fills container */
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #CCC;   /* subtle border */
+  background: #FFFFFF;       /* white input inside the filled box */
+  outline: none;
+}
+
+/* 6 Months page hero only */
+.sixmonths-page .hero {
+  background: url('../assets/images/Water_garden.png') no-repeat top center;
+  background-size: contain;
+  height: auto;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  color: #fff;
+  padding: 40px 20px 20px 20px;
+  text-align: center;
+}
+
+/* Optional overlay for readability */
+.sixmonths-page .hero::after {
+  content: '';
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}
+
+.sixmonths-page .hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  width: 100%;
+  margin-top: 150px;
+  text-align: center;
+}
+
+.sixmonths-page .hero h2 {
+  font-size: 4rem;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  margin: 0;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.sixmonths-page .hero .divider {
+  width: 200px;
+  height: 4px;
+  background: #FFFFFF;
+  margin: 20px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* Six Months Courses Cards */
+.sixmonths-page .courses-cards {
+  padding: 60px 20px;
+  background: #FFFFFF;
+  position: relative;
+}
+
+.sixmonths-page .cards-container {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.sixmonths-page .cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.sixmonths-page .course-card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.sixmonths-page .course-card:hover {
+  transform: translateY(-5px);
+}
+
+.sixmonths-page .course-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay */
+.sixmonths-page .course-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding: 25px 20px;
+  transition: background 0.3s;
+}
+
+.sixmonths-page .course-card:hover .overlay {
+  background: rgba(0,0,0,0.85);
+}
+
+/* Heading */
+.sixmonths-page .course-card .overlay h3 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+  margin-left: 5%;
+  margin-top: -10%;
+}
+
+/* Divider line */
+.sixmonths-page .course-card .overlay .divider {
+  width: 120px;
+  height: 2px;
+  background: #FFFFFF;
+  margin: 10px 0 15px 0;
+  border-radius: 2px;
+  margin-left: 5%;
+}
+
+/* Paragraph */
+.sixmonths-page .course-card .overlay p {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  margin: 0 0 20px 0;
+  word-wrap: break-word;
+  margin-left: 5%;
+}
+
+/* More details link */
+.sixmonths-page .course-card .overlay .more-details {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin-left: 5%;
+}
+
+.sixmonths-page .course-card .overlay .more-details img.icon {
+  width: 50px;
+  height: 50px;
+}
+
+/* 6 Weeks page hero only */
+.sixweeks-page .hero {
+  background: url('../assets/images/Water_garden.png') no-repeat top center;
+  background-size: contain;
+  height: auto;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  color: #fff;
+  padding: 40px 20px 20px 20px;
+  text-align: center;
+}
+
+/* Optional overlay for readability */
+.sixweeks-page .hero::after {
+  content: '';
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}
+
+.sixweeks-page .hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  width: 100%;
+  margin-top: 150px;
+  text-align: center;
+}
+
+.sixweeks-page .hero h2 {
+  font-size: 4rem;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  margin: 0;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.sixweeks-page .hero .divider {
+  width: 200px;
+  height: 4px;
+  background: #FFFFFF;
+  margin: 20px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* Six Weeks Courses Cards */
+.sixweeks-page .courses-cards {
+  padding: 60px 20px;
+  background: #FFFFFF;
+  position: relative;
+}
+
+.sixweeks-page .cards-container {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.sixweeks-page .cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.sixweeks-page .course-card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.sixweeks-page .course-card:hover {
+  transform: translateY(-5px);
+}
+
+.sixweeks-page .course-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlay */
+.sixweeks-page .course-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding: 25px 20px;
+  transition: background 0.3s;
+}
+
+.sixweeks-page .course-card:hover .overlay {
+  background: rgba(0,0,0,0.85);
+}
+
+/* Heading */
+.sixweeks-page .course-card .overlay h3 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+  margin-left: 5%;
+  margin-top: -10%;
+}
+
+/* Divider line */
+.sixweeks-page .course-card .overlay .divider {
+  width: 120px;
+  height: 2px;
+  background: #FFFFFF;
+  margin: 10px 0 15px 0;
+  border-radius: 2px;
+  margin-left: 5%;
+}
+
+/* Paragraph */
+.sixweeks-page .course-card .overlay p {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  margin: 0 0 20px 0;
+  word-wrap: break-word;
+  margin-left: 5%;
+}
+
+/* More details link */
+.sixweeks-page .course-card .overlay .more-details {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin-left: 5%;
+}
+
+.sixweeks-page .course-card .overlay .more-details img.icon {
+  width: 50px;
+  height: 50px;
+}

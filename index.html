@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Empowering the Nation — Home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo on the left (clickable) -->
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/images/logo_white.png" alt="Empowering the Nation Logo" class="logo">
+        </a>
+      </div>
+
+      <!-- Centered nav inside pill -->
+      <nav class="site-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="pages/sixmonths.html" class="nav-link">6 Months</a>
+        <a href="pages/sixweeks.html" class="nav-link">6 Weeks</a>
+        <a href="pages/contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Search icon on the right -->
+      <div class="search-icon">
+  <img src="assets/icons/searchWhite.png" alt="Search" class="icon" id="search-toggle">
+  <div class="search-box" id="search-box">
+    <input type="text" placeholder="search...">
+  </div>
+</div>
+
+  </header>
+
+  <!-- Hero section -->
+  <main>
+    <section class="hero">
+  <div class="hero-inner container">
+    <h2>EMPOWERING THE NATION</h2>
+    <!-- Divider line -->
+    <div class="divider"></div>
+    <p class="lead">
+      Empowering the Nation was established in 2022 and offers courses in Johannesburg. 
+      Hundreds of domestic workers and gardeners have been trained on both the six-months 
+      long Learnerships and six-weeks Short Skills Training Programs to empower themselves and 
+      can provide more marketable skills.
+    </p>
+    <a href="pages/sixmonths.html" class="btn">GET STARTED</a>
+  </div>
+
+</section>
+
+  </main>
+
+   <!-- JS for search dropdown -->
+  <script>
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBox = document.getElementById('search-box');
+
+    searchToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent immediate close
+      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
+      searchBox.querySelector('input').focus();
+    });
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+        searchBox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Empowering the Nation — Six Months Courses</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="sixmonths-page">
+
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo on the left (clickable) -->
+      <div class="brand">
+        <a href="../index.html">
+          <img src="../assets/images/logo_white.png" alt="Logo" class="logo">
+        </a>
+      </div>
+
+      <!-- Centered nav inside pill -->
+      <nav class="site-nav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="sixmonths.html" class="nav-link active">6 Months</a>
+        <a href="sixweeks.html" class="nav-link">6 Weeks</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Search icon on the right -->
+      <div class="search-icon">
+        <img src="../assets/icons/searchWhite.png" alt="Search" class="icon" id="search-toggle">
+        <div class="search-box" id="search-box">
+          <input type="text" placeholder="search...">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero section -->
+  <main>
+    <section class="hero" style="background: url('../assets/images/Water_garden.png') no-repeat top center; background-size: contain;">
+      <div class="hero-inner container">
+        <h2>SIX MONTHS COURSES</h2>
+        <div class="divider"></div>
+      </div>
+    </section>
+
+    <!-- Six Months Courses Cards -->
+    <section class="courses-cards">
+      <div class="cards-container">
+
+        <!-- Card 1 -->
+        <div class="course-card">
+          <img src="../assets/images/firstaid.png" alt="First Aid">
+          <div class="overlay">
+            <h3>FIRST AID</h3>
+            <div class="divider"></div>
+            <p>Purpose: To provide first aid awareness and basic life support.</p>
+              <a href="sixmonthsinfo.html" class="more-details">
+              MORE DETAILS HERE <img src="../assets/icons/more_details.png" alt="arrow" class="icon">
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="course-card">
+          <img src="../assets/images/sewing.png" alt="Sewing">
+          <div class="overlay">
+            <h3>SEWING</h3>
+            <div class="divider"></div>
+            <p>Purpose: To provide alterations and new garment tailoring services.</p>
+              <a href="sixmonthsinfo.html" class="more-details">
+              MORE DETAILS HERE <img src="../assets/icons/more_details.png" alt="arrow" class="icon">
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="course-card">
+          <img src="../assets/images/landscaping.png" alt="Landscaping">
+          <div class="overlay">
+            <h3>LANDSCAPING</h3>
+            <div class="divider"></div>
+            <p>Purpose: To provide landscaping services for new and established gardens.</p>
+            <a href="sixmonthsinfo.html" class="more-details">
+              MORE DETAILS HERE <img src="../assets/icons/more_details.png" alt="arrow" class="icon">
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="course-card">
+          <img src="../assets/images/lifeskills.png" alt="Life Skills">
+          <div class="overlay">
+            <h3>LIFE SKILLS</h3>
+            <div class="divider"></div>
+            <p>Purpose: To provide skills to navigate basic life necessities.</p>
+              <a href="sixmonthsinfo.html" class="more-details">
+              MORE DETAILS HERE <img src="../assets/icons/more_details.png" alt="arrow" class="icon">
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- JS for search dropdown -->
+  <script>
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBox = document.getElementById('search-box');
+
+    searchToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
+      searchBox.querySelector('input').focus();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+        searchBox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
