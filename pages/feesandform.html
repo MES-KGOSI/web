@@ -2,54 +2,329 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <title>Empowering the Nation – Contact and Fees</title>
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* GLOBAL */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fff;
+      color: #000900;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    /* HEADER / NAV */
+    .site-header.info-pages-header {
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .brand img.logo {
+      width: 150px;
+      height: auto;
+    }
+
+    .site-nav {
+      background-color: #000900;
+      border-radius: 40px;
+      display: flex;
+      gap: 30px;
+      padding: 8px 20px;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .site-nav .nav-link {
+      color: white;
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding: 5px 0;
+    }
+
+    /* Search Icon + Box */
+    .search-icon {
+      position: relative;
+      cursor: pointer;
+    
+    }
+
+    .search-box {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      display: none;
+      background-color: white;
+      border-radius: 20px;
+      padding: 5px 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+    }
+
+    /* CALCULATOR SECTION */
+    .calculator-section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .calculator-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .form-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .heading-block span {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .underline {
+      width: 160px;
+      height: 4px;
+      background-color: black;
+      margin-top: 8px;
+    }
+
+    .form-title {
+      font-weight: bold;
+      font-size: 1.6rem;
+      margin-top: 10px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .price-tag {
+      font-weight: bold;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      padding: 10px 20px;
+    }
+
+    .calculate-button {
+      background-color: black;
+      color: white;
+    }
+
+    .calculate-button:hover {
+      background-color: #007AFF;
+    }
+
+    .quote-button {
+      background-color: #007AFF;
+      color: white;
+    }
+
+    .quote-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Confirmation Modal */
+    #confirmationModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #confirmationModal .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #continueHome {
+      background-color: #0b6088;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    
+  </style>
 </head>
+
 <body class="info-pages">
 
-  <!-- Header / Navigation for Info Pages -->
+  <!-- Header / Navigation -->
   <header class="site-header info-pages-header">
     <div class="container header-inner">
       <div class="brand">
-           <a href="../index.html">
+        <a href="../index.html">
           <img src="../assets/images/logoBlack.png" alt="Logo" class="logo">
         </a>
       </div>
 
-      <!-- Centered nav inside pill -->
       <nav class="site-nav">
         <a href="../index.html" class="nav-link">Home</a>
         <a href="../pages/sixmonths.html" class="nav-link">6 Months</a>
         <a href="../pages/sixweeks.html" class="nav-link">6 Weeks</a>
-        <a href="../pages/contact.html" class="nav-link active">Contact</a> <!-- Active -->
+        <a href="../pages/contact.html" class="nav-link active">Contact</a>
       </nav>
 
       <div class="search-icon">
-        <img src="../assets/icons/searchBlack.png" alt="Search" class="icon" id="search-toggle">
+        <img src="../assets/icons/searchBlack.png" alt="Search" id="search-toggle">
         <div class="search-box" id="search-box">
-          <input type="text" placeholder="search...">
+          <input type="text" placeholder="Search...">
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Calculator Section -->
+  <section id="calculator" class="calculator-section">
+    <div class="calculator-row">
+      <!-- Column 1 -->
+      <div class="form-block">
+        <div class="heading-block"><span>1</span><div class="underline"></div></div>
+        <div class="form-title">Details</div>
+        <div class="form-group"><label>Phone Number</label><input type="text" id="phone"></div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="email"></div>
+        <p>You can select more than one course:</p>
+
+        <div class="form-title">Six Month Course</div>
+        <div class="form-group checkbox-grid">
+          <label><input type="checkbox" name="sixMonth" value="1500"> FIRST AID <span class="price-tag">R1500</span></label>
+          <label><input type="checkbox" name="sixMonth" value="1500"> SEWING <span class="price-tag">R1500</span></label>
+          <label><input type="checkbox" name="sixMonth" value="1500"> LANDSCAPING <span class="price-tag">R1500</span></label>
+          <label><input type="checkbox" name="sixMonth" value="1500"> LIFE SKILLS <span class="price-tag">R1500</span></label>
+        </div>
+
+        <div class="form-title">Six Weeks Course</div>
+        <div class="form-group checkbox-grid">
+          <label><input type="checkbox" name="sixWeek" value="750"> CHILD MINDING <span class="price-tag">R750</span></label>
+          <label><input type="checkbox" name="sixWeek" value="750"> COOKING <span class="price-tag">R750</span></label>
+          <label><input type="checkbox" name="sixWeek" value="750"> GARDEN MAINTENANCE <span class="price-tag">R750</span></label>
+        </div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="form-block">
+        <div class="heading-block"><span>2</span><div class="underline"></div></div>
+        <div class="form-title">Calculation of Quote</div>
+        <div class="form-group"><label>Sub Total</label><input type="text" id="subtotal" readonly></div>
+        <div class="form-group"><label>Discount</label><input type="text" id="discount" readonly></div>
+        <div class="form-group"><label>VAT (15%)</label><input type="text" id="vat" readonly></div>
+        <div class="form-group"><label>Total Quote</label><input type="text" id="totalQuote" readonly></div>
+        <button class="calculate-button" id="applyBtn">APPLY</button>
+        <button class="quote-button">GET A QUOTE</button>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="form-block">
+        <div class="heading-block"><span>3</span><div class="underline"></div></div>
+        <div class="form-title">Contact Form</div>
+        <form id="contactForm">
+          <div class="form-group"><label>Name</label><input type="text" id="contactName" required></div>
+          <div class="form-group"><label>Email</label><input type="email" id="contactEmail" required></div>
+          <div class="form-group"><label>Venue</label>
+            <select id="venue" required>
+              <option value="">-- Please select an option --</option>
+              <option value="sharpville">Sharpville</option>
+              <option value="soweto">Soweto</option>
+              <option value="alexandra">Alexandra</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea id="message" rows="5" required></textarea></div>
+          <button type="submit" class="calculate-button">SUBMIT</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="confirmationModal">
+    <div class="modal-content">
+      <p>Thank you for your message.<br>We will get back to your request shortly.</p>
+      <button id="continueHome">Continue to Home</button>
+    </div>
+  </div>
+
+  <script>
+    // Search Toggle
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBox = document.getElementById('search-box');
+    searchToggle.addEventListener('click', e => {
+      e.stopPropagation();
+      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
+      searchBox.querySelector('input').focus();
+    });
+    document.addEventListener('click', e => {
+      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+        searchBox.style.display = 'none';
+      }
+    });
+
+    // Contact Form Modal
+    const form = document.getElementById('contactForm');
+    const modal = document.getElementById('confirmationModal');
+    const continueBtn = document.getElementById('continueHome');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+
+    continueBtn.addEventListener('click', () => {
+      window.location.href = '../index.html';
+    });
+  </script>
 </body>
 </html>
-
-<!-- JS for search dropdown -->
-<script>
-  const searchToggle = document.getElementById('search-toggle');
-  const searchBox = document.getElementById('search-box');
-
-  searchToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
-    searchBox.querySelector('input').focus();
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
-      searchBox.style.display = 'none';
-    }
-  });
-</script>
-

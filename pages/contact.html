@@ -2,12 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CONTACT</title>
   <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      background-color: #fff;
+      color: #000;
+    }
+
+    /* CONTACT PAGE STYLES */
+    .contact-section {
+      padding: 200px 40px;
+      width: 100%;
+      max-width: 60%;
+      margin: 0 auto;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .left-column,
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 18px;
+      flex: 1 1 300px;
+    }
+
+    .heading-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .heading-block span {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .underline {
+      width: 250px;
+      height: 2px;
+      background-color: black;
+      margin-top: 8px;
+    }
+
+    .contact-item,
+    .email-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-item img,
+    .email-item img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 45px;
+      margin-top: 10px;
+    }
+
+    .social-icons img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.1);
+    }
+
+    .form-button-wrapper {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      padding: 14px 28px;
+      background-color: black;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-button:hover {
+      background-color: #333;
+    }
+
+    .map-section {
+      margin-top: 60px;
+      text-align: center;
+      padding-bottom: 60px;
+    }
+
+    .map-heading {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #map {
+      width: 100%;
+      height: 400px;
+      border-radius: 8px;
+    }
+  </style>
 </head>
+
 <body class="info-pages">
 
-  <!-- Header / Navigation for Contact Page -->
+  <!-- ORIGINAL NAV -->
   <header class="site-header info-pages-header">
     <div class="container header-inner">
       <!-- Logo on the left -->
@@ -23,6 +153,7 @@
         <a href="../pages/sixmonths.html" class="nav-link">6 Months</a>
         <a href="../pages/sixweeks.html" class="nav-link">6 Weeks</a>
         <a href="../pages/contact.html" class="nav-link active">Contact</a>
+
       </nav>
 
       <!-- Search icon on the right -->
@@ -35,7 +166,58 @@
     </div>
   </header>
 
-  <!-- JS for search dropdown -->
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact-section">
+    <div class="contact-row">
+      <div class="left-column">
+        <div class="heading-block">
+          <span>01</span>
+          <div class="underline"></div>
+        </div>
+
+        <div class="contact-item">
+          <img src="../assets/icons/phone.png" alt="Phone Icon" />
+          <span>+27 73 456 7891</span>
+        </div>
+
+        <div class="contact-item">
+          <img src="../assets/icons/location.png" alt="Location Icon" />
+          <span>Sharpeville | Soweto | Alexandra</span>
+        </div>
+
+        <div class="social-icons">
+          <a href="#"><img src="../assets/icons/fb.png" alt="Facebook" /></a>
+          <a href="#"><img src="../assets/icons/twitter.png" alt="X (Twitter)" /></a>
+          <a href="#"><img src="../assets/icons/ig.png" alt="Instagram" /></a>
+          <a href="#"><img src="../assets/icons/linkedin.png" alt="LinkedIn" /></a>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="heading-block">
+          <span>02</span>
+          <div class="underline"></div>
+        </div>
+
+        <div class="email-item">
+          <img src="../assets/icons/email.png" alt="Email Icon" />
+          <span>info@empoweringthenation.com</span>
+        </div>
+
+        <div class="form-button-wrapper">
+          <a href="#contact-form" class="contact-button">Fill out our contact form</a>
+          <a href="#credentials" class="contact-button">View Institution credentials</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <div class="map-heading">FIND US</div>
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <!-- SEARCH TOGGLE JS -->
   <script>
     const searchToggle = document.getElementById('search-toggle');
     const searchBox = document.getElementById('search-box');
@@ -53,8 +235,42 @@
     });
   </script>
 
+  <!-- GOOGLE MAP SCRIPT -->
+  <script>
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -26.2041, lng: 28.0473 }, // Johannesburg
+        zoom: 10,
+        styles: [
+          { elementType: "geometry", stylers: [{ color: "#1d2c4d" }] },
+          { elementType: "labels.text.fill", stylers: [{ color: "#8ec3b9" }] },
+          { elementType: "labels.text.stroke", stylers: [{ color: "#1a3646" }] },
+          { featureType: "administrative", elementType: "geometry", stylers: [{ color: "#1a3646" }] },
+          { featureType: "poi", elementType: "geometry", stylers: [{ color: "#283d6a" }] },
+          { featureType: "road", elementType: "geometry", stylers: [{ color: "#304a7d" }] },
+          { featureType: "water", elementType: "geometry", stylers: [{ color: "#0e1626" }] }
+        ]
+      });
+
+      const locations = [
+        { name: "Sharpeville", position: { lat: -26.6866, lng: 27.8716 } },
+        { name: "Soweto", position: { lat: -26.2678, lng: 27.8585 } },
+        { name: "Alexandra", position: { lat: -26.1066, lng: 28.1096 } }
+      ];
+
+      locations.forEach(loc => {
+        new google.maps.Marker({
+          position: loc.position,
+          map,
+          title: loc.name
+        });
+      });
+    }
+  </script>
+
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0FGivwYDwwra2qIYay9jzFdcxQI9Rzw0&callback=initMap">
+  </script>
+
 </body>
 </html>
-
-
-

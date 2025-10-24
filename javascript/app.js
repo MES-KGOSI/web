@@ -1,65 +1,131 @@
-function initSearchToggle(toggleId, boxId, inputId) {
-  const searchToggle = document.getElementById(toggleId);
-  const searchBox = document.getElementById(boxId);
-  const searchInput = document.getElementById(inputId);
+document.addEventListener('DOMContentLoaded', () => {
 
-  if (!searchToggle || !searchBox || !searchInput) return;
+  const searchToggle = document.getElementById('searchToggle');
+  const searchInput = document.getElementById('searchInput');
+
+  if (searchToggle && searchInput) {
+    searchToggle.addEventListener('click', () => {
+      const isHidden = searchInput.style.display === 'none' || !searchInput.style.display;
+      searchInput.style.display = isHidden ? 'inline-block' : 'none';
+      if (isHidden) searchInput.focus();
+    });
+
+    searchInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim().toLowerCase();
+
+        const sixMonthCourses = ['first aid', 'sewing', 'landscaping', 'life skills', 'six months'];
+        const sixWeekCourses = ['child minding', 'cooking', 'garden maintenance', 'six weeks'];
+
+        if (sixMonthCourses.some(term => query.includes(term))) {
+          window.location.href = 'six_months.html';
+        } else if (sixWeekCourses.some(term => query.includes(term))) {
+          window.location.href = 'six_weeks.html';
+        } else {
+          alert('No matching course found. Please try searching by course name or duration.');
+        }
+      }
+    });
+  }
 
   
-  searchToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
-    searchInput.focus();
-  });
+  if (document.getElementById('subtotal')) {
+    class QuoteCalculator {
+      constructor() {
+        this.subtotalField = document.getElementById('subtotal');
+        this.discountField = document.getElementById('discount');
+        this.vatField = document.getElementById('vat');
+        this.totalField = document.getElementById('totalQuote');
+        this.checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        this.quoteButton = document.querySelector('.quote-button');
 
-  
-  document.addEventListener('click', (e) => {
-    if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
-      searchBox.style.display = 'none';
-    }
-  });
+        this.checkboxes.forEach(box => {
+          box.addEventListener('change', () => this.updateLiveTotals());
+        });
 
-  
-  searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const query = searchInput.value.toLowerCase().trim();
-      if (!query) return;
+        if (this.quoteButton) {
+          this.quoteButton.addEventListener('click', () => this.showFinalQuote());
+        }
+      }
 
-      const pages = [
-        { title: "Home", url: "/index.html", keywords: ["home", "empowering", "nation"] },
-        { title: "6 Months", url: "/pages/sixmonths.html", keywords: ["6 months", "six months", "learnership", "training"] },
-        { title: "6 Weeks", url: "/pages/sixweeks.html", keywords: ["six weeks", "6 weeks", "short skills", "courses"] },
-        { title: "Contact", url: "/pages/contact.html", keywords: ["contact", "email", "form"] },
-        { title: "Six Weeks Info", url: "/pages/sixweeksinfo.html", keywords: [
-          "6 weeks info", "child minding", "cooking", "garden maintenance",
-          "first aid", "first aid awareness", "basic life support", "emergency response",
-          "cpr", "safety procedures", "sewing", "alterations", "tailoring", "fabric handling",
-          "stitching", "pattern making", "landscaping", "garden design", "plant selection",
-          "maintenance techniques", "soil preparation", "irrigation"
-        ]},
-        { title: "Six Months Info", url: "/pages/sixmonthsinfo.html", keywords: [
-          "sixmonthsinfo", "life skills", "life navigation", "time management",
-          "financial literacy", "communication skills", "problem-solving"
-        ]}
-      ];
-const match = pages.find(page =>
-  page.keywords.some(keyword => {
-    const normalizedKeyword = keyword.toLowerCase().trim();
-    return normalizedKeyword.includes(query) || query.includes(normalizedKeyword);
-  })
-);
+      updateLiveTotals() {
+        let subtotal = 0;
 
+        this.checkboxes.forEach(box => {
+          if (box.checked) {
+            subtotal += parseFloat(box.value);
+          }
+        });
 
-      if (match) {
-        window.location.href = match.url;
-      } else {
-        alert("No matching page found.");
+        const vat = subtotal * 0.15;
+
+        this.subtotalField.value = `R${subtotal.toFixed(2)}`;
+        this.vatField.value = `R${vat.toFixed(2)}`;
+        this.discountField.value = 'R0.00';
+        this.totalField.value = '';
+      }
+
+      showFinalQuote() {
+        let subtotal = 0;
+        let selectedCount = 0;
+
+        this.checkboxes.forEach(box => {
+          if (box.checked) {
+            subtotal += parseFloat(box.value);
+            selectedCount++;
+          }
+        });
+
+        const discount = selectedCount > 2 ? subtotal * 0.05 : 0;
+        const vat = (subtotal - discount) * 0.15;
+        const total = subtotal - discount + vat;
+
+        this.subtotalField.value = `R${subtotal.toFixed(2)}`;
+        this.discountField.value = `R${discount.toFixed(2)}`;
+        this.vatField.value = `R${vat.toFixed(2)}`;
+        this.totalField.value = `R${total.toFixed(2)}`;
       }
     }
-  });
-}
 
+    new QuoteCalculator();
+  }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initSearchToggle('search-toggle', 'search-box', 'search-input');
+  
+  const contactLink = document.getElementById('contactNumber');
+  const contactModal = document.getElementById('contactModal');
+  const modalYes = document.getElementById('modalYes');
+  const modalNo = document.getElementById('modalNo');
+
+  if (contactLink && contactModal && modalYes && modalNo) {
+    contactLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      contactModal.style.display = 'flex';
+    });
+
+    modalNo.addEventListener('click', () => {
+      contactModal.style.display = 'none';
+    });
+
+    modalYes.addEventListener('click', () => {
+      contactModal.style.display = 'none';
+      alert('Contact saved. You can now call +27 73 456 7891.');
+      window.location.href = 'tel:+27734567891';
+    });
+  }
+
+  
+  const contactForm = document.getElementById('contactForm');
+  const confirmationModal = document.getElementById('confirmationModal');
+  const continueHome = document.getElementById('continueHome');
+
+  if (contactForm && confirmationModal && continueHome) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      confirmationModal.style.display = 'flex';
+    });
+
+    continueHome.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+  }
 });

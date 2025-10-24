@@ -1,9 +1,303 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6 Months Course Information</title>
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    /* ========== GENERAL RESET ========== */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+    }
+
+    /* ========== HEADER / NAVIGATION ========== */
+    .site-header.info-pages-header {
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 15px 40px;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .brand .logo {
+      height: 45px;
+      width: auto;
+    }
+
+    .site-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .site-nav .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .site-nav .nav-link:hover {
+      color: #007aff;
+    }
+
+    .site-nav .nav-link.active {
+      color: #007aff;
+    }
+
+    .site-nav .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background-color: #007aff;
+      border-radius: 50%;
+    }
+
+    .search-icon {
+      position: relative;
+    }
+
+    /* Search icon */
+.search-icon .icon {
+  height: 50px;          /* choose desired height */
+  width: auto;           /* keeps aspect ratio */
+  object-fit: contain;   /* ensures it’s not stretched */
+  cursor: pointer;
+  margin-right: 80px;
+}
+/* Relative container for proper absolute positioning */
+.search-container {
+  position: relative;
+  width: 100%; /* full width allows centering */
+}
+
+  /* Search dropdown container */
+.search-box {
+  display: none; /* hidden by default */
+  position: absolute;
+  top: 100px; /* below nav */
+  left: 50%;    
+  transform: translateX(-50%);
+  width: 80%;   
+  max-width: 900px;
+  z-index: 20;
+  border-radius: 12px;   
+  padding: 10px 20px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Search input */
+.search-box input {
+  width: 100%;              
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;   
+  background: #fff;       
+  outline: none;
+  color: #000900;             
+  letter-spacing: 1px;       
+}
+
+/* Placeholder text color */
+.search-box input::placeholder { 
+  color: #000900;       
+  opacity: 1;           
+  letter-spacing: 1px;  
+}
+
+
+    /* ========== COURSE CARDS SECTION ========== */
+    .scroll-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      display: flex;
+      justify-content: center;
+      padding: 160px 0 100px 0; /* space for fixed header */
+      box-sizing: border-box;
+    }
+
+    .content {
+      display: flex;
+      gap: 30px;
+      flex-direction: row;
+      width: max-content;
+      align-items: flex-start;
+    }
+
+    .detail {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      width: 325px;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .detail h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      text-align: left;
+    }
+
+    .detail h1::after {
+      content: "";
+      display: block;
+      width: 320px;
+      height: 2px;
+      background: #000900;
+      margin: 10px 0 0 0;
+      border-radius: 2px;
+    }
+
+    .detail h2 {
+      text-align: left;
+      margin: 10px 0;
+    }
+
+    .detail ul {
+      list-style: disc;
+      text-align: left;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    /* ========== CARD IMAGE & APPLY BUTTON ========== */
+    .card {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .apply {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .apply button {
+      width: 200px;
+      height: 45px;
+      border: none;
+      background: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .apply a {
+      text-decoration: none;
+      color: #000;
+      display: block;
+      width: 100%;
+      height: 100%;
+      line-height: 45px;
+    }
+
+    .apply button:hover {
+      background: #007aff;
+    }
+
+    .apply button:hover a {
+      color: #fff;
+    }
+
+    .price {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      background: rgba(0,0,0,0.3);
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    
+  .scroll-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  width: 50px;           /* fixed width */
+  height: 50px;          /* fixed height */
+  line-height: 50px;     /* vertically center the arrow */
+  text-align: center;    /* horizontally center the arrow */
+  border-radius: 50%;    /* circular */
+  z-index: 50;
+  transition: background 0.3s ease;
+}
+.scroll-arrow:hover {
+  background-color: rgba(0,0,0,0.9);
+}
+
+.scroll-arrow.left {
+  left: 10px;
+}
+
+.scroll-arrow.right {
+  right: 10px;
+}
+
+
+    .scroll-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
 </head>
+
 <body class="info-pages">
 
   <!-- Header / Navigation -->
@@ -18,8 +312,8 @@
       <nav class="site-nav">
         <a href="../index.html" class="nav-link">Home</a>
         <a href="../pages/sixmonths.html" class="nav-link">6 Months</a>
-        <a href="../pages/sixweeks.html" class="nav-link">6 Weeks</a>
-        <a href="../pages/contact.html" class="nav-link active">Contact</a>
+        <a href="../pages/sixweeksinfo.html" class="nav-link active">6 Weeks</a>
+        <a href="../pages/contact.html" class="nav-link">Contact</a>
       </nav>
 
       <div class="search-icon">
@@ -31,119 +325,121 @@
     </div>
   </header>
 
-  <main>
-    <section class="courses-cards">
-      <div class="cards-container">
+  <!-- Main Content -->
+  <div class="scroll-wrapper">
+    <div class="content">
 
-        <!-- ===== COURSE 1 ===== -->
-        <div class="course-item">
-          <div class="course-section-header">
-            <div class="course-number">01</div>
-            <div class="divider"></div>
-            <h3>FIRST AID</h3>
-            <ul class="course-points">
-              <li>Wounds and bleeding.</li>
-              <li>Burns and fractures.</li>
-              <li>Emergency scene management.</li>
-              <li>Cardio-Pulmonary <br> Resuscitation (CPR).</br></li>
-              <li>Respiratory distress <br>e.g., Choking, blocked airway.</br></li>
-            </ul>
+      <!-- Course 1 -->
+      <div class="detail">
+        <h1>01</h1>
+        <h2>FIRST AID</h2>
+        <ul>
+          <li>Wounds and bleeding.</li>
+          <li>Burns and fractures.</li>
+          <li>Emergency scene management.</li>
+          <li>Cardio-Pulmonary Resuscitation (CPR).</li>
+          <li>Respiratory distress e.g., Choking, blocked airway.</li>
+        </ul>
+        <div class="card">
+          <img src="../assets/images/firstaid.png" alt="Child Minding">
+          <div class="apply">
+            <button><a href="../pages/feesandform.html">APPLY</a></button>
           </div>
-          <div class="course-card">
-            <img src="../assets/images/firstaid.png" alt="First Aid">
-            <div class="overlay">
-              <a href="../pages/feesandform.html" class="apply-btn">APPLY</a>
-              <div class="course-price">R 1500</div>
-            </div>
-          </div>
+          <p class="price">R 1500</p>
         </div>
-
-        <!-- ===== COURSE 2 ===== -->
-        <div class="course-item">
-          <div class="course-section-header">
-            <div class="course-number">02</div>
-            <div class="divider"></div>
-            <h3>SEWING</h3>
-            <ul class="course-points">
-              <li>Types of stitches.</li>
-              <li>Threading a sewing machine.</li>
-              <li>Sewing buttons, zips, hems <br>and seams.</br></li>
-              <li>Alterations.</li>
-              <li>Designing and sewing <br>new garments.</br></li>
-            </ul>
-          </div>
-          <div class="course-card">
-            <img src="../assets/images/sewing.png" alt="Sewing">
-            <div class="overlay">
-              <a href="../pages/feesandform.html" class="apply-btn">APPLY</a>
-              <div class="course-price">R 1500</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== COURSE 3 ===== -->
-        <div class="course-item">
-          <div class="course-section-header">
-            <div class="course-number">03</div>
-            <div class="divider"></div>
-            <h3>LANDSCAPING</h3>
-            <ul class="course-points">
-              <li>Indigenous and exotic plants <br>and trees.</br></li>
-              <li>Fixed structures (fountains, statues, <br> benches, tables, built-in braai).</br></li>
-              <li>Balancing of plants and trees in a garden.</li>
-              <li>Aesthetics of plant shapes and colours.</li>
-              <li>Garden layout.</li>
-            </ul>
-          </div>
-          <div class="course-card">
-            <img src="../assets/images/landscaping.png" alt="Landscaping">
-            <div class="overlay">
-              <a href="../pages/feesandform.html" class="apply-btn">APPLY</a>
-              <div class="course-price">R 1500</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== COURSE 4 ===== -->
-        <div class="course-item">
-          <div class="course-section-header">
-            <div class="course-number">04</div>
-            <div class="divider"></div>
-            <h3>LIFE SKILLS</h3>
-            <ul class="course-points">
-              <li>Opening a bank <br>account.</br></li>
-              <li>Basic labour law <br>(know your rights).</br></li>
-              <li>Basic reading and writing <br>literacy.</br></li>
-              <li>Basic numeric literacy.</li>
-            </ul>
-          </div>
-          <div class="course-card">
-            <img src="../assets/images/lifeskills.png" alt="Life Skills">
-            <div class="overlay">
-              <a href="../pages/feesandform.html" class="apply-btn">APPLY</a>
-              <div class="course-price">R 1500</div>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </section>
-  </main>
 
+      <!-- Course 2 -->
+      <div class="detail">
+        <h1>02</h1>
+        <h2>SEWING</h2>
+        <ul>
+          <li>Types of stitches.</li>
+          <li>Threading a sewing machine.</li>
+          <li>Sewing buttons, zips, hems and seams.</li>
+          <li>Alterations.</li>
+          <li>Designing and sewing new garments.</li>
+        </ul>
+        <div class="card">
+          <img src="../assets/images/sewing.png" alt="Cooking">
+          <div class="apply">
+            <button><a href="../pages/feesandform.html">APPLY</a></button>
+          </div>
+          <p class="price">R 1500</p>
+        </div>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="detail">
+        <h1>03</h1>
+        <h2>LANDSCAPING</h2>
+        <ul>
+          <li>Indigenous and exotic plants and trees.</li>
+          <li>Fixed structures (fountains, statues, benches, tables, built-in braai).</li>
+          <li>Balancing of plants and trees in a garden.</li>
+          <li>Aesthetics of plant shapes and colours.</li>
+          <li>Garden layout.</li>
+        </ul>
+        <div class="card">
+          <img src="../assets/images/landscaping.png" alt="Garden Maintenance">
+          <div class="apply">
+            <button><a href="../pages/feesandform.html">APPLY</a></button>
+          </div>
+          <p class="price">R 1500</p>
+        </div>
+      </div>
+
+      <!-- Course 4 -->
+      <div class="detail">
+        <h1>04</h1>
+        <h2>LIFE SKILLS</h2>
+        <ul>
+          <li>Opening a bank account.</li>
+          <li>Basic labour law (know your rights).</li>
+          <li>Basic reading and writing literacy.</li>
+          <li>Basic numeric literacy.</li>
+        </ul>
+        <div class="card">
+          <img src="../assets/images/lifeskills.png" alt="Garden Maintenance">
+          <div class="apply">
+            <button><a href="../pages/feesandform.html">APPLY</a></button>
+          </div>
+          <p class="price">R 1500</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS -->
   <script>
-    const searchToggle = document.getElementById('search-toggle');
-    const searchBox = document.getElementById('search-box');
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchToggle = document.getElementById('search-toggle');
+      const searchBox = document.getElementById('search-box');
 
-    searchToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
-      searchBox.querySelector('input').focus();
-    });
+      searchToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        searchBox.style.display = searchBox.style.display === 'block' ? 'none' : 'block';
+        searchBox.querySelector('input').focus();
+      });
 
-    document.addEventListener('click', (e) => {
-      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
-        searchBox.style.display = 'none';
-      }
+      document.addEventListener('click', (e) => {
+        if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+          searchBox.style.display = 'none';
+        }
+      });
+
+      const scrollWrapper = document.getElementById('scroll-wrapper');
+      const scrollLeftBtn = document.getElementById('scroll-left');
+      const scrollRightBtn = document.getElementById('scroll-right');
+
+      scrollLeftBtn.addEventListener('click', () => {
+        scrollWrapper.scrollBy({ left: -350, behavior: 'smooth' });
+      });
+
+      scrollRightBtn.addEventListener('click', () => {
+        scrollWrapper.scrollBy({ left: 350, behavior: 'smooth' });
+      });
     });
   </script>
 
