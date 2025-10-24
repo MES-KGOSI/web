@@ -6,22 +6,22 @@
 </head>
 <body class="info-pages">
 
-  <!-- Header / Navigation for Info Pages -->
+  <!-- Header / Navigation -->
   <header class="site-header info-pages-header">
     <div class="container header-inner">
       <div class="brand">
-           <a href="../index.html">
+        <a href="../index.html">
           <img src="../assets/images/logoBlack.png" alt="Logo" class="logo">
         </a>
       </div>
 
-      <!-- Centered nav inside pill -->
       <nav class="site-nav">
         <a href="../index.html" class="nav-link">Home</a>
         <a href="../pages/sixmonths.html" class="nav-link">6 Months</a>
         <a href="../pages/sixweeks.html" class="nav-link">6 Weeks</a>
-        <a href="../pages/contact.html" class="nav-link active">Contact</a> <!-- Active -->
+        <a href="../pages/contact.html" class="nav-link active">Contact</a>
       </nav>
+
       <div class="search-icon">
         <img src="../assets/icons/searchBlack.png" alt="Search" class="icon" id="search-toggle">
         <div class="search-box" id="search-box">
@@ -30,110 +30,97 @@
       </div>
     </div>
   </header>
-<main>
-  <!-- Six Months Courses Cards (Info Page Version) -->
-<section class="courses-cards">
-  <div class="cards-container">
 
-    <!-- Card 1 -->
-    <div class="course-card">
-      <img src="../assets/images/firstaid.png" alt="First Aid">
-      <div class="overlay">
-        <div class="course-number">01</div>
-        <div class="divider"></div>
-        <h3>FIRST AID</h3>
-        <ul class="course-points">
-          <li>Provide first aid awareness</li>
-          <li>Basic life support</li>
-          <li>Emergency response</li>
-          <li>CPR techniques</li>
-          <li>Safety procedures</li>
-        </ul>
-        <a href="../feesandform.html" class="btn apply-btn">APPLY</a>
-        <div class="course-price">R 1500</div>
+  <main>
+    <section class="courses-cards">
+      <div class="cards-container">
+
+        <!-- ===== COURSE 1 ===== -->
+        <div class="course-item">
+          <div class="course-section-header">
+            <div class="course-number">01</div>
+            <div class="divider"></div>
+            <h3>CHILD MINDING</h3>
+            <ul class="course-points">
+              <li>Birth to six-month old baby needs.</li>
+              <li>Seven-month to one year old needs.</li>
+              <li>Toddler needs.</li>
+              <li>Educational toys.</li>
+            </ul>
+          </div>
+          <div class="course-card">
+            <img src="../assets/images/childminding.png" alt="Child Minding">
+            <div class="overlay">
+              <a href="../pages/feesandform.html" class="apply-btn">APPLY</a>
+              <div class="course-price">R 1500</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== COURSE 2 ===== -->
+        <div class="course-item">
+          <div class="course-section-header">
+            <div class="course-number">02</div>
+            <div class="divider"></div>
+            <h3>COOKING</h3>
+            <ul class="course-points">
+              <li>Nutritional requirements for <br>a healthy body.</br></li>
+              <li>Types of protein, carbohydrates <br>and vegetables.</br></li>
+              <li>Planning meals.</li>
+              <li>Tasty and nutritious recipes.</li>
+              <li>Preparation and cooking of meals.</li>
+            </ul>
+          </div>
+          <div class="course-card">
+            <img src="../assets/images/cooking.png" alt="Cooking">
+            <div class="overlay">
+              <a href="../pages/feesandform.html" class="apply-btn">APPLY</a>
+              <div class="course-price">R 1500</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== COURSE 3 ===== -->
+        <div class="course-item">
+          <div class="course-section-header">
+            <div class="course-number">03</div>
+            <div class="divider"></div>
+            <h3>GARDEN MAINTENANCE</h3>
+            <ul class="course-points">
+              <li>Water restrictions and the watering <br>requirements of indigenous and<br> exotic plants.</br></li>
+              <li>Pruning and propagation <br>of plants.</br></li>
+              <li>Planting techniques for different <br>plant types.</br></li>
+            </ul>
+          </div>
+          <div class="course-card">
+            <img src="../assets/images/garden.png" alt="Garden Maintenance">
+            <div class="overlay">
+              <a href="../pages/feesandform.html" class="apply-btn">APPLY</a>
+              <div class="course-price">R 1500</div>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
+  </main>
 
-    <!-- Card 2 -->
-    <div class="course-card">
-      <img src="../assets/images/sewing.png" alt="Sewing">
-      <div class="overlay">
-        <div class="course-number">02</div>
-        <div class="divider"></div>
-        <h3>SEWING</h3>
-        <ul class="course-points">
-          <li>Alterations for garments</li>
-          <li>Tailoring new garments</li>
-          <li>Fabric handling</li>
-          <li>Basic stitching techniques</li>
-          <li>Pattern making</li>
-        </ul>
-        <a href="../feesandform.html" class="btn apply-btn">APPLY</a>
-        <div class="course-price">R 1500</div>
-      </div>
-    </div>
+  <script>
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBox = document.getElementById('search-box');
 
-    <!-- Card 3 -->
-    <div class="course-card">
-      <img src="../assets/images/landscaping.png" alt="Landscaping">
-      <div class="overlay">
-        <div class="course-number">03</div>
-        <div class="divider"></div>
-        <h3>LANDSCAPING</h3>
-        <ul class="course-points">
-          <li>Garden design</li>
-          <li>Plant selection</li>
-          <li>Maintenance techniques</li>
-          <li>Soil preparation</li>
-          <li>Watering & irrigation</li>
-        </ul>
-        <a href="../feesandform.html" class="btn apply-btn">APPLY</a>
-        <div class="course-price">R 1500</div>
-      </div>
-    </div>
+    searchToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
+      searchBox.querySelector('input').focus();
+    });
 
-    <!-- Card 4 -->
-    <div class="course-card">
-      <img src="../assets/images/lifeskills.png" alt="Life Skills">
-      <div class="overlay">
-        <div class="course-number">04</div>
-        <div class="divider"></div>
-        <h3>LIFE SKILLS</h3>
-        <ul class="course-points">
-          <li>Basic life navigation</li>
-          <li>Time management</li>
-          <li>Financial literacy</li>
-          <li>Communication skills</li>
-          <li>Problem-solving</li>
-        </ul>
-        <a href="../feesandform.html" class="btn apply-btn">APPLY</a>
-        <div class="course-price">R 1500</div>
-      </div>
-    </div>
+    document.addEventListener('click', (e) => {
+      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+        searchBox.style.display = 'none';
+      }
+    });
+  </script>
 
-  </div>
-</section>
-
-</main>
 </body>
 </html>
-
-<!-- JS for search dropdown -->
-<script>
-  const searchToggle = document.getElementById('search-toggle');
-  const searchBox = document.getElementById('search-box');
-
-  searchToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
-    searchBox.querySelector('input').focus();
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
-      searchBox.style.display = 'none';
-    }
-  });
-</script>
-
-
