@@ -359,23 +359,49 @@
   </div>
 
   <!-- Search JS -->
-  <script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
     const searchToggle = document.getElementById('search-toggle');
     const searchBox = document.getElementById('search-box');
+    const searchInput = searchBox?.querySelector('input');
 
-    searchToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      searchBox.style.display = searchBox.style.display === 'block' ? 'none' : 'block';
-      searchBox.querySelector('input').focus();
-    });
+    if (searchToggle && searchBox && searchInput) {
+      searchToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isVisible = getComputedStyle(searchBox).display === 'block';
+        searchBox.style.display = isVisible ? 'none' : 'block';
+        if (!isVisible) searchInput.focus();
+      });
 
-    document.addEventListener('click', (e) => {
-      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
-        searchBox.style.display = 'none';
-      }
-    });
-  </script>
-  <script src="../javascript/app.js"></script>
+      document.addEventListener('click', (e) => {
+        if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+          searchBox.style.display = 'none';
+        }
+      });
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const query = searchInput.value.trim().toLowerCase();
+          const sixMonthCourses = ['first aid', 'sewing', 'landscaping', 'life skills', 'six months'];
+          const sixWeekCourses = ['child minding', 'cooking', 'garden maintenance', 'six weeks'];
+          const index = ['home'];
+
+          if (sixMonthCourses.some(term => query.includes(term))) {
+            window.location.href = '../pages/sixmonths.html';
+          } else if (sixWeekCourses.some(term => query.includes(term))) {
+            window.location.href = '../pages/sixweeks.html';
+          } else if (index.some(term => query.includes(term))) {
+            window.location.href = '../index.html';
+          } else {
+            alert('No matching course found. Please try searching by course name or duration.');
+          }
+        }
+      });
+    }
+  });
+</script>
+
+  
 
 </body>
 </html>

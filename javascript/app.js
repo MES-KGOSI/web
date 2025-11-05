@@ -1,34 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // 🔍 Search icon toggle and dropdown behavior
+  const searchToggle = document.getElementById('search-toggle');
+  const searchBox = document.getElementById('search-box');
 
-  const searchToggle = document.getElementById('searchToggle');
-  const searchInput = document.getElementById('searchInput');
-
-  if (searchToggle && searchInput) {
-    searchToggle.addEventListener('click', () => {
-      const isHidden = searchInput.style.display === 'none' || !searchInput.style.display;
-      searchInput.style.display = isHidden ? 'inline-block' : 'none';
-      if (isHidden) searchInput.focus();
+  if (searchToggle && searchBox) {
+    searchToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent immediate close
+      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
+      const input = searchBox.querySelector('input');
+      if (input) input.focus();
     });
 
-    searchInput.addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') {
-        const query = searchInput.value.trim().toLowerCase();
-
-        const sixMonthCourses = ['first aid', 'sewing', 'landscaping', 'life skills', 'six months'];
-        const sixWeekCourses = ['child minding', 'cooking', 'garden maintenance', 'six weeks'];
-
-        if (sixMonthCourses.some(term => query.includes(term))) {
-          window.location.href = 'six_months.html';
-        } else if (sixWeekCourses.some(term => query.includes(term))) {
-          window.location.href = 'six_weeks.html';
-        } else {
-          alert('No matching course found. Please try searching by course name or duration.');
-        }
+    // Close dropdown if clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+        searchBox.style.display = 'none';
       }
     });
+
+    // 🔎 Enter-to-search logic
+    const searchInput = searchBox.querySelector('input');
+    if (searchInput) {
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          const query = searchInput.value.trim().toLowerCase();
+
+          const sixMonthCourses = ['first aid', 'sewing', 'landscaping', 'life skills', 'six months'];
+          const sixWeekCourses = ['child minding', 'cooking', 'garden maintenance', 'six weeks'];
+
+          if (sixMonthCourses.some(term => query.includes(term))) {
+            window.location.href = 'pages/sixmonths.html';
+          } else if (sixWeekCourses.some(term => query.includes(term))) {
+            window.location.href = 'pages/sixweeks.html';
+          } else {
+            alert('No matching course found. Please try searching by course name or duration.');
+          }
+        }
+      });
+    }
   }
 
-  
+  // 🧮 Quote calculator logic (optional, runs only if fields exist)
   if (document.getElementById('subtotal')) {
     class QuoteCalculator {
       constructor() {
@@ -90,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new QuoteCalculator();
   }
 
-  
+  // 📞 Contact modal logic
   const contactLink = document.getElementById('contactNumber');
   const contactModal = document.getElementById('contactModal');
   const modalYes = document.getElementById('modalYes');
@@ -113,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  
+  // 📩 Contact form confirmation logic
   const contactForm = document.getElementById('contactForm');
   const confirmationModal = document.getElementById('confirmationModal');
   const continueHome = document.getElementById('continueHome');

@@ -211,12 +211,15 @@ body, html {
   letter-spacing: 1px;        /* match spacing */
 }
 
-/* Placeholder text color */
+ Placeholder text color 
 .search-box input::placeholder { 
   color: #000900;       /* placeholder text color */
   opacity: 1;           /* ensures full opacity */
-  letter-spacing: 1px;  /* match typed text */
-}
+  letter-spacing: 1px;  /* match typed text */ 
+  
+} 
+
+
 /* 6 Months page hero only */
 .sixmonths-page .hero {
   background: url('../assets/images/Water_garden.png') no-repeat top center;

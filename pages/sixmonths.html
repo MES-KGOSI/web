@@ -105,22 +105,71 @@
   </main>
 
   <!-- JS for search dropdown -->
-  <script>
+ <script>
+  document.addEventListener('DOMContentLoaded', () => {
     const searchToggle = document.getElementById('search-toggle');
     const searchBox = document.getElementById('search-box');
+    const searchInput = searchBox?.querySelector('input');
 
-    searchToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
-      searchBox.querySelector('input').focus();
-    });
+    if (searchToggle && searchBox && searchInput) {
+      // Toggle search box visibility
+      searchToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isVisible = getComputedStyle(searchBox).display === 'block';
+        searchBox.style.display = isVisible ? 'none' : 'block';
+        if (!isVisible) searchInput.focus();
+      });
 
-    document.addEventListener('click', (e) => {
-      if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
-        searchBox.style.display = 'none';
-      }
-    });
-  </script>
+      // Hide search box when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
+          searchBox.style.display = 'none';
+        }
+      });
+
+      // Handle Enter key search
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const query = searchInput.value.trim().toLowerCase();
+
+          const routes = {
+            'first aid': 'sixmonths.html',
+            'sewing': 'sixmonths.html',
+            'landscaping': 'sixmonths.html',
+            'life skills': 'sixmonths.html',
+            'six months': 'sixmonths.html',
+            'six months info': 'sixmonthsinfo.html',
+            'child minding': 'sixweeks.html',
+            'cooking': 'sixweeks.html',
+            'garden maintenance': 'sixweeks.html',
+            'six weeks': 'sixweeks.html',
+            'six weeks info': 'sixweeksinfo.html',
+            'contact': 'contact.html',
+            'fees': 'feesandform.html',
+            'form': 'feesandform.html',
+            'home': '../index.html'
+          };
+
+          let found = false;
+          for (const [keyword, path] of Object.entries(routes)) {
+            if (query.includes(keyword)) {
+              const basePath = window.location.pathname.includes('/pages/') ? '../pages/' : 'pages/';
+              window.location.href = basePath + path;
+              found = true;
+              break;
+            }
+          }
+
+          if (!found) {
+            alert('No matching page found. Try searching by course name or page title.');
+          }
+        }
+      });
+    }
+  });
+</script>
+
+
 
 </body>
 </html>

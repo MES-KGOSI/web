@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Empowering the Nation – Contact and Fees</title>
-  <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="../css/style.css">
   <style>
     /* GLOBAL */
     body {
@@ -57,30 +57,18 @@
       padding: 5px 0;
     }
 
-    /* Search Icon + Box */
-    .search-icon {
-      position: relative;
-      cursor: pointer;
+   .search-icon {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+ 
+
+
+
     
-    }
-
-    .search-box {
-      position: absolute;
-      top: 40px;
-      right: 0;
-      display: none;
-      background-color: white;
-      border-radius: 20px;
-      padding: 5px 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-    .search-box input {
-      border: none;
-      outline: none;
-      padding: 6px 10px;
-      font-size: 0.9rem;
-    }
 
     /* CALCULATOR SECTION */
     .calculator-section {
@@ -197,7 +185,8 @@
       padding: 10px 20px;
       cursor: pointer;
     }
-    
+  
+
   </style>
 </head>
 
@@ -220,12 +209,13 @@
       </nav>
 
       <div class="search-icon">
-        <img src="../assets/icons/searchBlack.png" alt="Search" id="search-toggle">
-        <div class="search-box" id="search-box">
-          <input type="text" placeholder="Search...">
-        </div>
-      </div>
-    </div>
+  <img src="../assets/icons/searchBlack.png" alt="Search" id="search-toggle" class="icon">
+  <div class="search-box" id="search-box">
+    <input type="text" placeholder="Search...">
+  </div>
+</div>
+
+
   </header>
 
   <!-- Calculator Section -->
@@ -298,25 +288,123 @@
   </div>
 
   <script>
-    // Search Toggle
-    const searchToggle = document.getElementById('search-toggle');
-    const searchBox = document.getElementById('search-box');
-    searchToggle.addEventListener('click', e => {
+  
+ document.addEventListener('DOMContentLoaded', () => {
+  // 🔍 Search toggle and Enter-to-search logic
+  const searchToggle = document.getElementById('search-toggle');
+  const searchBox = document.getElementById('search-box');
+  const searchInput = searchBox?.querySelector('input');
+
+  if (searchToggle && searchBox && searchInput) {
+    searchToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      searchBox.style.display = (searchBox.style.display === 'block') ? 'none' : 'block';
-      searchBox.querySelector('input').focus();
+      const isVisible = getComputedStyle(searchBox).display === 'block';
+      searchBox.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) searchInput.focus();
     });
-    document.addEventListener('click', e => {
+
+    document.addEventListener('click', (e) => {
       if (!searchBox.contains(e.target) && !searchToggle.contains(e.target)) {
         searchBox.style.display = 'none';
       }
     });
 
-    // Contact Form Modal
-    const form = document.getElementById('contactForm');
-    const modal = document.getElementById('confirmationModal');
-    const continueBtn = document.getElementById('continueHome');
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim().toLowerCase();
+        const routes = {
+          'first aid': 'sixmonths.html',
+          'sewing': 'sixmonths.html',
+          'landscaping': 'sixmonths.html',
+          'life skills': 'sixmonths.html',
+          'six months': 'sixmonths.html',
+          'six months info': 'sixmonthsinfo.html',
+          'child minding': 'sixweeks.html',
+          'cooking': 'sixweeks.html',
+          'garden maintenance': 'sixweeks.html',
+          'six weeks': 'sixweeks.html',
+          'six weeks info': 'sixweeksinfo.html',
+          'contact': 'contact.html',
+          'fees': 'feesandform.html',
+          'form': 'feesandform.html',
+          'home': 'index.html'
+        };
 
+        let found = false;
+        for (const [keyword, path] of Object.entries(routes)) {
+          if (query.includes(keyword)) {
+            const basePath = window.location.pathname.includes('/pages/') ? '../pages/' : 'pages/';
+            window.location.href = basePath + path;
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          alert('No matching page found. Try searching by course name or page title.');
+        }
+      }
+    });
+  }
+
+  // 🧮 Quote calculator logic
+  const subtotalField = document.getElementById('subtotal');
+  const discountField = document.getElementById('discount');
+  const vatField = document.getElementById('vat');
+  const totalField = document.getElementById('totalQuote');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const quoteButton = document.querySelector('.quote-button');
+
+  function updateLiveTotals() {
+    let subtotal = 0;
+    checkboxes.forEach(box => {
+      if (box.checked) {
+        subtotal += parseFloat(box.value);
+      }
+    });
+
+    const vat = subtotal * 0.15;
+    subtotalField.value = `R${subtotal.toFixed(2)}`;
+    vatField.value = `R${vat.toFixed(2)}`;
+    discountField.value = 'R0.00';
+    totalField.value = '';
+  }
+
+  function showFinalQuote() {
+    let subtotal = 0;
+    let selectedCount = 0;
+
+    checkboxes.forEach(box => {
+      if (box.checked) {
+        subtotal += parseFloat(box.value);
+        selectedCount++;
+      }
+    });
+
+    const discount = selectedCount > 2 ? subtotal * 0.05 : 0;
+    const vat = (subtotal - discount) * 0.15;
+    const total = subtotal - discount + vat;
+
+    subtotalField.value = `R${subtotal.toFixed(2)}`;
+    discountField.value = `R${discount.toFixed(2)}`;
+    vatField.value = `R${vat.toFixed(2)}`;
+    totalField.value = `R${total.toFixed(2)}`;
+  }
+
+  checkboxes.forEach(box => {
+    box.addEventListener('change', updateLiveTotals);
+  });
+
+  if (quoteButton) {
+    quoteButton.addEventListener('click', showFinalQuote);
+  }
+
+  // 📩 Contact Form Modal
+  const form = document.getElementById('contactForm');
+  const modal = document.getElementById('confirmationModal');
+  const continueBtn = document.getElementById('continueHome');
+
+  if (form && modal && continueBtn) {
     form.addEventListener('submit', e => {
       e.preventDefault();
       modal.style.display = 'flex';
@@ -325,6 +413,11 @@
     continueBtn.addEventListener('click', () => {
       window.location.href = '../index.html';
     });
-  </script>
+  }
+});
+
+</script>
+
+
 </body>
 </html>
